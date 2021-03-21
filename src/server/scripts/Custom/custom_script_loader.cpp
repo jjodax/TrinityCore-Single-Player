@@ -62,6 +62,7 @@
 // 40
 void AddLfgSoloScripts();
 void AddSC_skip_StarterArea();
+void AddSC_racial_traits_npc();
 
 void AddCustomScripts()
 {
@@ -107,4 +108,5 @@ void AddCustomScripts()
     // 40
 	AddLfgSoloScripts();
 	AddSC_skip_StarterArea();
+    AddSC_racial_traits_npc();
 }
