@@ -4622,6 +4622,15 @@ AutoBalance.ForcedID5  = "8317,15203,15204,15205,15305,6109,26801,30508,26799,30
 AutoBalance.ForcedID2  = ""
 
 #
+###################################################################################################
+#
+
+PlayedTimeReward.Interval = 60000
+PlayedTimeReward.Money    = 1
+PlayedTimeReward.Honor    = 1
+PlayedTimeReward.Arena    = 1
+
+#
 #     AutoBalance.DisabledID
 #        Disable scaling on specific creatures
 #
