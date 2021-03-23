@@ -866,6 +866,8 @@ void NPCBotsDump::AppendBotEquipsData(BotStringTransaction* trans, uint32 entry)
                     break;
                 }
                 case 7:  //randomPropertyId
+                    AppendEscapedValue(ss,     int32(fields[i].GetInt16()),   end);
+                    break;
                 case 8:  //durability
                     AppendEscapedValue(ss,     uint32(fields[i].GetUInt16()),  end);
                     break;
