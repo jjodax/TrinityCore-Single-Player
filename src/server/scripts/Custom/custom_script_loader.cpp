@@ -60,6 +60,7 @@
 // 38
 // 39
 // 40
+void AddLfgSoloScripts();
 
 void AddCustomScripts()
 {
@@ -103,4 +104,5 @@ void AddCustomScripts()
     // 38
     // 39
     // 40
+	AddLfgSoloScripts();
 }
