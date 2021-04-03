@@ -73,7 +73,7 @@ RealmID = 1
 #        Example:     "@prefix@/share/trinitycore"
 #        Default:     "."
 
-DataDir = "."
+DataDir = "./data"
 
 #
 #    LogsDir
@@ -82,7 +82,7 @@ DataDir = "."
 #                     Logs directory must exists, or log file creation will be disabled.
 #        Default:     "" - (Log files will be stored in the current path)
 
-LogsDir = ""
+LogsDir = "logs"
 
 #
 #    LoginDatabaseInfo
@@ -210,7 +210,7 @@ SourceDirectory  = ""
 #                     "/usr/bin/mysql"
 #        Default:     ""
 
-MySQLExecutable = ""
+MySQLExecutable = "mysql/bin/mysql.exe"
 
 #
 #    IPLocationFile
@@ -836,7 +836,7 @@ StartDeathKnightPlayerLevel = 55
 #        Default:     0
 #                     100 - (1 Silver)
 
-StartPlayerMoney = 0
+StartPlayerMoney = 1000
 
 #
 #    MaxHonorPoints
@@ -891,7 +891,7 @@ RecruitAFriend.MaxDifference = 4
 #                     2  - (Enabled, GMs/Admins)
 #                     3  - (Enabled, Admins)
 
-DisableWaterBreath = 4
+DisableWaterBreath = 0
 
 #
 #    AllFlightPaths
@@ -908,7 +908,7 @@ AllFlightPaths = 0
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-InstantFlightPaths = 0
+InstantFlightPaths = 1
 
 #
 #    AlwaysMaxSkillForLevel
@@ -917,7 +917,7 @@ InstantFlightPaths = 0
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-AlwaysMaxSkillForLevel = 0
+AlwaysMaxSkillForLevel = 1
 
 #
 #    ActivateWeather
@@ -950,7 +950,7 @@ Instance.IgnoreLevel = 0
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-Instance.IgnoreRaid = 0
+Instance.IgnoreRaid = 1
 
 #
 #    Instance.ResetTimeHour
@@ -1089,7 +1089,7 @@ Guild.BankEventLogRecordsCount = 25
 #        Range:       0-11
 #        Default:     2
 
-MaxPrimaryTradeSkill = 2
+MaxPrimaryTradeSkill = 11
 
 #
 #    MinPetitionSigns
@@ -1097,7 +1097,7 @@ MaxPrimaryTradeSkill = 2
 #        Range:       0-9
 #        Default:     9
 
-MinPetitionSigns = 9
+MinPetitionSigns = 0
 
 #
 #    MaxGroupXPDistance
@@ -1122,7 +1122,7 @@ MaxRecruitAFriendBonusDistance = 100
 #                     100 (Quests always grant full experience upon completion)
 #        Default:     0 - (Quests too low may grant no experience)
 
-MinQuestScaledXPRatio = 0
+MinQuestScaledXPRatio = 100
 
 #
 #    MinCreatureScaledXPRatio
@@ -1132,7 +1132,7 @@ MinQuestScaledXPRatio = 0
 #                     100 (Creature kills always grant full experience upon kill)
 #        Default:     0 - (Creatures too low may grant no experience)
 
-MinCreatureScaledXPRatio = 0
+MinCreatureScaledXPRatio = 100
 
 #
 #    MinDiscoveredScaledXPRatio
@@ -1141,7 +1141,7 @@ MinCreatureScaledXPRatio = 0
 #                     100 (Map exploration always grant full experience upon discovery)
 #        Default:     0 - (No experience granted when discovered area is too low level)
 
-MinDiscoveredScaledXPRatio = 0
+MinDiscoveredScaledXPRatio = 100
 
 #
 #    MailDeliveryDelay
@@ -1197,7 +1197,7 @@ ClientCacheVersion = 0
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-Event.Announce = 0
+Event.Announce = 1
 
 #
 #    BeepAtStart
@@ -1236,7 +1236,7 @@ Command.LookupMaxResults = 0
 #        Default:     1 - (Enabled)
 #                     0 - (Disabled)
 
-AllowTickets = 1
+AllowTickets = 0
 
 #
 #    DeletedCharacterTicketTrace
@@ -1256,7 +1256,7 @@ DeletedCharacterTicketTrace = 0
 #           LFG_OPTION_ENABLE_RAID_BROWSER   = 2,     Enable the raid browser
 #        Default:     1
 
-DungeonFinder.OptionsMask = 1
+DungeonFinder.OptionsMask = 2
 
 #
 #   DBC.EnforceItemAttributes
@@ -1609,7 +1609,7 @@ TalentsInspecting = 1
 #                     radius will be used.
 #        Default:     60
 
-ThreatRadius = 60
+ThreatRadius = 30
 
 #
 #    Rate.Creature.Aggro
@@ -1618,7 +1618,7 @@ ThreatRadius = 60
 #                     1.5 - (Enabled, 150%)
 #                     0   - (Disabled, 0%)
 
-Rate.Creature.Aggro = 1
+Rate.Creature.Aggro = 0.5
 
 #
 #    CreatureFamilyFleeAssistanceRadius
@@ -1626,7 +1626,7 @@ Rate.Creature.Aggro = 1
 #        Default:     30 - (Enabled)
 #                     0  - (Disabled)
 
-CreatureFamilyFleeAssistanceRadius = 30
+CreatureFamilyFleeAssistanceRadius = 10
 
 #
 #    CreatureFamilyAssistanceRadius
@@ -2274,12 +2274,12 @@ Rate.Skill.Discovery = 1
 Rate.Drop.Item.Poor             = 1
 Rate.Drop.Item.Normal           = 1
 Rate.Drop.Item.Uncommon         = 1
-Rate.Drop.Item.Rare             = 1
-Rate.Drop.Item.Epic             = 1
-Rate.Drop.Item.Legendary        = 1
-Rate.Drop.Item.Artifact         = 1
+Rate.Drop.Item.Rare             = 2
+Rate.Drop.Item.Epic             = 3
+Rate.Drop.Item.Legendary        = 4
+Rate.Drop.Item.Artifact         = 5
 Rate.Drop.Item.Referenced       = 1
-Rate.Drop.Money                 = 1
+Rate.Drop.Money                 = 20
 
 #
 #    Rate.Drop.Item.ReferencedAmount
@@ -2315,8 +2315,8 @@ Rate.XP.BattlegroundKill = 1
 #        Description: Multiplier for money quest rewards. Can not be below 0.
 #        Default:     1
 
-Rate.Quest.Money.Reward = 1
-Rate.Quest.Money.Max.Level.Reward = 1
+Rate.Quest.Money.Reward = 20
+Rate.Quest.Money.Max.Level.Reward = 20
 
 #
 #    Rate.RepairCost
@@ -2343,7 +2343,7 @@ Rate.Rest.Offline.InWilderness   = 1
 #        Description: Damage after fall rate.
 #        Default:     1
 
-Rate.Damage.Fall = 1
+Rate.Damage.Fall = 0.1
 
 #
 #    Rate.Auction.Time
@@ -2413,7 +2413,7 @@ Rate.Reputation.RecruitAFriendBonus = 0.1
 #        Description: Movement speed rate.
 #        Default:     1
 
-Rate.MoveSpeed = 1
+Rate.MoveSpeed = 1.15
 
 #
 #    Rate.InstanceResetTime
@@ -2436,10 +2436,10 @@ Rate.InstanceResetTime = 1
 #                     1 - (SkillGain.Gathering)
 #                     1 - (SkillGain.Weapon)
 
-SkillGain.Crafting  = 1
-SkillGain.Defense   = 1
-SkillGain.Gathering = 1
-SkillGain.Weapon    = 1
+SkillGain.Crafting  = 10
+SkillGain.Defense   = 3
+SkillGain.Gathering = 10
+SkillGain.Weapon    = 3
 
 #
 #    SkillChance.Orange
@@ -2524,7 +2524,7 @@ DurabilityLossChance.Block = 0.05
 #                     MaxPlayerLevel+1 - (Disabled)
 #                     -10              - (Enabled, Level 1+ characters have 10 minute duration)
 
-Death.SicknessLevel = 11
+Death.SicknessLevel = 81
 
 #
 #    Death.CorpseReclaimDelay.PvP
@@ -2554,7 +2554,7 @@ Death.Bones.BattlegroundOrArena = 1
 #        Default:     1 - (Enabled)
 #                     0 - (Disabled)
 
-Die.Command.Mode = 1
+Die.Command.Mode = 0
 
 #
 ###################################################################################################
@@ -2573,10 +2573,10 @@ Stats.Limits.Enable = 0
 #        Description: Set percentage limit for dodge, parry, block and crit rating.
 #        Default:     95.0 (95%)
 
-Stats.Limits.Dodge = 95.0
-Stats.Limits.Parry = 95.0
-Stats.Limits.Block = 95.0
-Stats.Limits.Crit  = 95.0
+Stats.Limits.Dodge = 100.0
+Stats.Limits.Parry = 100.0
+Stats.Limits.Block = 100.0
+Stats.Limits.Crit  = 100.0
 
 #
 ###################################################################################################
@@ -3104,7 +3104,7 @@ PlayerStart.AllReputation = 0
 #                     65 - (Weekend only)
 #                     127 - (Always active)
 
-XP.Boost.Daymask = 0
+XP.Boost.Daymask = 65
 
 #
 #    XP.Boost.Rate
@@ -3350,7 +3350,7 @@ PvPRank.Rate.ExtraHonor = 1
 #                     Always specify 14 values, for 14 ranks
 #        Default:     "100,500,1000,2500,4000,6500,9500,12000,15000,20000,35000,50000,75000,100000"
 
-PvPRank.HKPerRank = "100,500,1000,2500,4000,6500,9500,12000,15000,20000,35000,50000,75000,100000"
+PvPRank.HKPerRank = "10,50,100,250,400,650,950,1200,1500,2000,3500,5000,7500,10000"
 
 #
 ####################################################################################################
@@ -3380,7 +3380,7 @@ AuctionHouseBot.Update.Interval = 20
 #       Default:     0 - (Disabled)
 #                    1 - (Enabled)
 
-AuctionHouseBot.Seller.Enabled = 0
+AuctionHouseBot.Seller.Enabled = 1
 
 #
 #    AuctionHouseBot.Alliance.Items.Amount.Ratio
@@ -3415,7 +3415,7 @@ AuctionHouseBot.MinTime = 1
 #       Description: Maximum time for the new auction in hours
 #       Default:     72 - (Hours)
 
-AuctionHouseBot.MaxTime = 72
+AuctionHouseBot.MaxTime = 2
 
 #
 #    AuctionHouseBot.Class.CLASS.Allow.Zero = 0
@@ -3460,7 +3460,7 @@ AuctionHouseBot.Items.Loot = 1
 #       Default:     0 - (Disabled)
 #                    1 - (Enabled)
 
-AuctionHouseBot.Items.Misc = 0
+AuctionHouseBot.Items.Misc = 1
 
 #
 #    AuctionHouseBot.Bind.*
@@ -3485,7 +3485,7 @@ AuctionHouseBot.Bind.Quest = 0
 #       Default      0 - (Disabled)
 #                    1 - (Enabled)
 
-AuctionHouseBot.LockBox.Enabled = 0
+AuctionHouseBot.LockBox.Enabled = 1
 
 #
 #    AuctionHouseBot.ItemsPerCycle.Boost
@@ -3501,7 +3501,7 @@ AuctionHouseBot.ItemsPerCycle.Boost = 1000
 #                    Usually this value is used always when auction table is already initialised.
 #       Default:     20
 
-AuctionHouseBot.ItemsPerCycle.Normal = 20
+AuctionHouseBot.ItemsPerCycle.Normal = 50
 
 #
 #    AuctionHouseBot.BuyPrice.Seller
@@ -3517,63 +3517,63 @@ AuctionHouseBot.BuyPrice.Seller = 0
 #       Default:     0.6 - (Min)
 #                    0.9 - (Max)
 
-AuctionHouseBot.BidPrice.Min = 0.6
-AuctionHouseBot.BidPrice.Max = 0.9
+AuctionHouseBot.BidPrice.Min = 0.60
+AuctionHouseBot.BidPrice.Max = 0.99
 
 #
 #    AuctionHouseBot.Alliance.Price.Ratio
 #       Description: Percentage by which the price of items sold on Alliance Auction House is incremented / decreased
 #       Default:     100 - (Not modify)
 
-AuctionHouseBot.Alliance.Price.Ratio = 100
+AuctionHouseBot.Alliance.Price.Ratio = 200
 
 #
 #    AuctionHouseBot.Horde.Price.Ratio
 #       Description: Percentage by which the price of items sold on Horde Auction House is incremented / decreased
 #       Default:     100 - (Not modify)
 
-AuctionHouseBot.Horde.Price.Ratio = 100
+AuctionHouseBot.Horde.Price.Ratio = 200
 
 #
 #    AuctionHouseBot.Neutral.Price.Ratio
 #       Description: Percentage by which the price of items sold on Neutral Auction House is incremented / decreased
 #       Default:     100 - (Not modify)
 
-AuctionHouseBot.Neutral.Price.Ratio = 100
+AuctionHouseBot.Neutral.Price.Ratio = 200
 
 #
 #    AuctionHouseBot.Items.QUALITY.Price.Ratio
 #       Description: Percentage by which the price of items sold of each quality is incremented / decreased (for all houses)
 #       Default:     100 - (No change)
 
-AuctionHouseBot.Items.Gray.Price.Ratio = 100
-AuctionHouseBot.Items.White.Price.Ratio = 100
-AuctionHouseBot.Items.Green.Price.Ratio = 100
-AuctionHouseBot.Items.Blue.Price.Ratio = 100
-AuctionHouseBot.Items.Purple.Price.Ratio = 100
-AuctionHouseBot.Items.Orange.Price.Ratio = 100
-AuctionHouseBot.Items.Yellow.Price.Ratio = 100
+AuctionHouseBot.Items.Gray.Price.Ratio = 200
+AuctionHouseBot.Items.White.Price.Ratio = 180
+AuctionHouseBot.Items.Green.Price.Ratio = 200
+AuctionHouseBot.Items.Blue.Price.Ratio = 250
+AuctionHouseBot.Items.Purple.Price.Ratio = 300
+AuctionHouseBot.Items.Orange.Price.Ratio = 350
+AuctionHouseBot.Items.Yellow.Price.Ratio = 375
 
 #
 #    AuctionHouseBot.Class.CLASS.Price.Ratio
 #       Description: Percentage by which the price of items sold of each class is incremented / decreased (for all houses)
 #       Default:   100 - (No change)
 
-AuctionHouseBot.Class.Consumable.Price.Ratio = 100
-AuctionHouseBot.Class.Container.Price.Ratio = 100
-AuctionHouseBot.Class.Weapon.Price.Ratio = 100
-AuctionHouseBot.Class.Gem.Price.Ratio = 100
-AuctionHouseBot.Class.Armor.Price.Ratio = 100
-AuctionHouseBot.Class.Reagent.Price.Ratio = 100
-AuctionHouseBot.Class.Projectile.Price.Ratio = 100
-AuctionHouseBot.Class.TradeGood.Price.Ratio = 100
-AuctionHouseBot.Class.Generic.Price.Ratio = 100
-AuctionHouseBot.Class.Recipe.Price.Ratio = 100
-AuctionHouseBot.Class.Quiver.Price.Ratio = 100
-AuctionHouseBot.Class.Quest.Price.Ratio = 100
-AuctionHouseBot.Class.Key.Price.Ratio = 100
-AuctionHouseBot.Class.Misc.Price.Ratio = 100
-AuctionHouseBot.Class.Glyph.Price.Ratio = 100
+AuctionHouseBot.Class.Consumable.Price.Ratio = 180
+AuctionHouseBot.Class.Container.Price.Ratio = 125
+AuctionHouseBot.Class.Weapon.Price.Ratio = 65
+AuctionHouseBot.Class.Gem.Price.Ratio = 175
+AuctionHouseBot.Class.Armor.Price.Ratio = 85
+AuctionHouseBot.Class.Reagent.Price.Ratio = 180
+AuctionHouseBot.Class.Projectile.Price.Ratio = 200
+AuctionHouseBot.Class.TradeGood.Price.Ratio = 150
+AuctionHouseBot.Class.Generic.Price.Ratio = 200
+AuctionHouseBot.Class.Recipe.Price.Ratio = 200
+AuctionHouseBot.Class.Quiver.Price.Ratio = 200
+AuctionHouseBot.Class.Quest.Price.Ratio = 200
+AuctionHouseBot.Class.Key.Price.Ratio = 250
+AuctionHouseBot.Class.Misc.Price.Ratio = 225
+AuctionHouseBot.Class.Glyph.Price.Ratio = 1000
 
 #
 #    AuctionHouseBot.Items.ItemLevel.*
@@ -3581,7 +3581,7 @@ AuctionHouseBot.Class.Glyph.Price.Ratio = 100
 #       Default:     0 - (Disabled)
 
 AuctionHouseBot.Items.ItemLevel.Min = 0
-AuctionHouseBot.Items.ItemLevel.Max = 0
+AuctionHouseBot.Items.ItemLevel.Max = 58
 
 #
 #    AuctionHouseBot.Items.ReqLevel.*
@@ -3589,7 +3589,7 @@ AuctionHouseBot.Items.ItemLevel.Max = 0
 #       Default:     0 - (Disabled)
 
 AuctionHouseBot.Items.ReqLevel.Min = 0
-AuctionHouseBot.Items.ReqLevel.Max = 0
+AuctionHouseBot.Items.ReqLevel.Max = 58
 
 #
 #    AuctionHouseBot.Items.ReqSkill.*
@@ -3598,7 +3598,7 @@ AuctionHouseBot.Items.ReqLevel.Max = 0
 #                    1 - (Enabled)
 
 AuctionHouseBot.Items.ReqSkill.Min = 0
-AuctionHouseBot.Items.ReqSkill.Max = 0
+AuctionHouseBot.Items.ReqSkill.Max = 275
 
 #
 #    AuctionHouseBot.Items.Amount.*
@@ -3608,12 +3608,12 @@ AuctionHouseBot.Items.ReqSkill.Max = 0
 #       Default:     0, 2000, 2500, 1500, 1000, 0, 0 (Gray, white, green, blue, purple, orange, yellow)
 
 AuctionHouseBot.Items.Amount.Gray = 0
-AuctionHouseBot.Items.Amount.White = 2000
-AuctionHouseBot.Items.Amount.Green = 2500
-AuctionHouseBot.Items.Amount.Blue = 1500
-AuctionHouseBot.Items.Amount.Purple = 1000
-AuctionHouseBot.Items.Amount.Orange = 0
-AuctionHouseBot.Items.Amount.Yellow = 0
+AuctionHouseBot.Items.Amount.White = 3500
+AuctionHouseBot.Items.Amount.Green = 3500
+AuctionHouseBot.Items.Amount.Blue = 2500
+AuctionHouseBot.Items.Amount.Purple = 1500
+AuctionHouseBot.Items.Amount.Orange = 100
+AuctionHouseBot.Items.Amount.Yellow = 100
 
 #
 #    AuctionHouseBot.Class.*
@@ -3635,19 +3635,19 @@ AuctionHouseBot.Items.Amount.Yellow = 0
 #                    Misc: 5
 #                    Glyph: 3
 
-AuctionHouseBot.Class.Consumable = 6
-AuctionHouseBot.Class.Container = 4
-AuctionHouseBot.Class.Weapon = 8
-AuctionHouseBot.Class.Gem = 3
-AuctionHouseBot.Class.Armor = 8
-AuctionHouseBot.Class.Reagent = 1
-AuctionHouseBot.Class.Projectile = 2
+AuctionHouseBot.Class.Consumable = 3
+AuctionHouseBot.Class.Container = 3
+AuctionHouseBot.Class.Weapon = 6
+AuctionHouseBot.Class.Gem = 2
+AuctionHouseBot.Class.Armor = 6
+AuctionHouseBot.Class.Reagent = 4
+AuctionHouseBot.Class.Projectile = 1
 AuctionHouseBot.Class.TradeGood = 10
-AuctionHouseBot.Class.Generic = 1
-AuctionHouseBot.Class.Recipe = 6
+AuctionHouseBot.Class.Generic = 4
+AuctionHouseBot.Class.Recipe = 4
 AuctionHouseBot.Class.Quiver = 1
-AuctionHouseBot.Class.Quest = 1
-AuctionHouseBot.Class.Key = 1
+AuctionHouseBot.Class.Quest = 2
+AuctionHouseBot.Class.Key = 2
 AuctionHouseBot.Class.Misc = 5
 AuctionHouseBot.Class.Glyph = 3
 
@@ -3665,7 +3665,7 @@ AuctionHouseBot.Class.Glyph = 3
 #       Default:     0
 
 AuctionHouseBot.Class.Misc.Mount.ReqLevel.Min = 0
-AuctionHouseBot.Class.Misc.Mount.ReqLevel.Max = 0
+AuctionHouseBot.Class.Misc.Mount.ReqLevel.Max = 58
 
 #
 #    AuctionHouseBot.Class.Misc.Mount.ReqSkill.*
@@ -3673,7 +3673,7 @@ AuctionHouseBot.Class.Misc.Mount.ReqLevel.Max = 0
 #       Default:     0
 
 AuctionHouseBot.Class.Misc.Mount.ReqSkill.Min = 0
-AuctionHouseBot.Class.Misc.Mount.ReqSkill.Max = 0
+AuctionHouseBot.Class.Misc.Mount.ReqSkill.Max = 150
 
 #
 #    AuctionHouseBot.Class.Glyph.ReqLevel.*
@@ -3681,7 +3681,7 @@ AuctionHouseBot.Class.Misc.Mount.ReqSkill.Max = 0
 #       Default:     0
 
 AuctionHouseBot.Class.Glyph.ReqLevel.Min = 0
-AuctionHouseBot.Class.Glyph.ReqLevel.Max = 0
+AuctionHouseBot.Class.Glyph.ReqLevel.Max = 58
 
 #
 #    AuctionHouseBot.Class.Glyph.ItemLevel.*
@@ -3689,7 +3689,7 @@ AuctionHouseBot.Class.Glyph.ReqLevel.Max = 0
 #       Default:     0
 
 AuctionHouseBot.Class.Glyph.ItemLevel.Min = 0
-AuctionHouseBot.Class.Glyph.ItemLevel.Max = 0
+AuctionHouseBot.Class.Glyph.ItemLevel.Max = 58
 
 #
 #    AuctionHouseBot.Class.TradeGood.ItemLevel.*
@@ -3697,7 +3697,7 @@ AuctionHouseBot.Class.Glyph.ItemLevel.Max = 0
 #       Default:     0
 
 AuctionHouseBot.Class.TradeGood.ItemLevel.Min = 0
-AuctionHouseBot.Class.TradeGood.ItemLevel.Max = 0
+AuctionHouseBot.Class.TradeGood.ItemLevel.Max = 58
 
 #
 #    AuctionHouseBot.Class.Container.ItemLevel.*
@@ -3705,7 +3705,7 @@ AuctionHouseBot.Class.TradeGood.ItemLevel.Max = 0
 #       Default:     0
 
 AuctionHouseBot.Class.Container.ItemLevel.Min = 0
-AuctionHouseBot.Class.Container.ItemLevel.Max = 0
+AuctionHouseBot.Class.Container.ItemLevel.Max = 58
 
 #
 #    AuctionHouseBot.forceIncludeItems
@@ -3713,7 +3713,7 @@ AuctionHouseBot.Class.Container.ItemLevel.Max = 0
 #                    List of ids with delimiter ','
 #       Default:     ""
 
-AuctionHouseBot.forceIncludeItems = ""
+AuctionHouseBot.forceIncludeItems = "4389,4382,4371,4357,4364,4361,4363,4404,2770,2771,2775,2318,2319,4234,4304,2589,2996,2592,2997,4306,4305,4338,10940,10938,39774,43124,43122,43120,43118,43116,39469,37101,8845,2447,765,785,2453,3355,2450,3356,3357,3358,8846,13464,13465,13467,13463,14256"
 
 #
 #    AuctionHouseBot.forceExcludeItems
@@ -3723,7 +3723,7 @@ AuctionHouseBot.forceIncludeItems = ""
 #       Default:     ""
 #
 
-AuctionHouseBot.forceExcludeItems = "6343,6345,6376,7192"
+AuctionHouseBot.forceExcludeItems = "6295,13901,13911,13913,6363,13906,13882,13877,13884,13878,13880,3003,1027,2920,5235,24100,997,2503,2487,18002,8630,13910,6364,6309,6292,13917,13909,6294,13902,6310,13912,13903,6311,13904,13905,13885,13886,13876,13883,13887,13879,13907,13914,13915,13908,13916,1134,37372,2481,14083,20979,38262,44705,29410,14392,49984,34694,12943,1902,32841,20977,12348,6225,34880,3005,1623,35457,35417,35400,35398,35444,35446,35443,35427,35420,35428,35397,35452,35419,8546,35433,35424,35426,35442,6183,35453,35441,35448,35432,35456,2460,43492,43488,6374,6216,3031,2599,1041,4959,6354,5518,8147,35447,42474,35445,5229,35461,35451,35460,35421,35429,35435,35396,35437,35418,35458,35461,16339,8627,8589,1133,8628,1255,900,8583,5105,3034,37164,44852,2693,2932,2929,25747,1014,9443,12468,5259,2715,32633,12787,50248,29645,35757,28023,12866,3675,6891,5517,9265,2927,6343,6345,6376,4500,37163,44148,44158,19298,19296,35425,35423,35459,35431,35399,19297,11630,23162,21878,10580,17771,17203,18562,17967,15410,5555,3895,29712,44236,22709,46957,31824,4912,14891,1259,5560,5549,49873,49689,30414,32615,28905,12991,5283,3774,34784,6227,3368,29419,42776,6232,9701,5600,50431,42940,37579,33089,13316,39743,2810,5875,14062,2415,5874,8590,2413,8633,34025,5663,7192,8840,38292,40232,996,1020,1025,8164,1021,1024,1023,37126,38496,38497,21442"
 
 #
 #    AuctionHouseBot.Class.RandomStackRatio.*
@@ -3776,7 +3776,7 @@ AuctionHouseBot.Class.RandomStackRatio.Glyph = 0
 #       Default:     0 - (Disabled)
 #                    1 - (Enabled)
 
-AuctionHouseBot.Buyer.Enabled = 0
+AuctionHouseBot.Buyer.Enabled = 1
 
 #
 #    AuctionHouseBot.Buyer.FACTION.Enabled
@@ -3784,9 +3784,9 @@ AuctionHouseBot.Buyer.Enabled = 0
 #       Default:     0 - (Disabled)
 #                    1 - (Enabled)
 
-AuctionHouseBot.Buyer.Alliance.Enabled = 0
-AuctionHouseBot.Buyer.Horde.Enabled = 0
-AuctionHouseBot.Buyer.Neutral.Enabled = 0
+AuctionHouseBot.Buyer.Alliance.Enabled = 1
+AuctionHouseBot.Buyer.Horde.Enabled = 1
+AuctionHouseBot.Buyer.Neutral.Enabled = 1
 
 #    AuctionHouseBot.Buyer.ChanceFactor
 #       Description: k value in the formula used for the chance to buy an item "100^(1 + (1 - (AuctionBid / ItemPrice)) / k)"
@@ -3807,13 +3807,13 @@ AuctionHouseBot.Buyer.ChanceFactor = 2
 #                    Orange 214347
 #                    Yellow 407406
 
-AuctionHouseBot.Buyer.Baseprice.Gray = 3504
-AuctionHouseBot.Buyer.Baseprice.White = 5429
-AuctionHouseBot.Buyer.Baseprice.Green = 21752
-AuctionHouseBot.Buyer.Baseprice.Blue = 36463
-AuctionHouseBot.Buyer.Baseprice.Purple = 87124
-AuctionHouseBot.Buyer.Baseprice.Orange = 214347
-AuctionHouseBot.Buyer.Baseprice.Yellow = 407406
+AuctionHouseBot.Buyer.Baseprice.Gray = 100
+AuctionHouseBot.Buyer.Baseprice.White = 450
+AuctionHouseBot.Buyer.Baseprice.Green = 950
+AuctionHouseBot.Buyer.Baseprice.Blue = 2500
+AuctionHouseBot.Buyer.Baseprice.Purple = 10000
+AuctionHouseBot.Buyer.Baseprice.Orange = 20000
+AuctionHouseBot.Buyer.Baseprice.Yellow = 40000
 
 #
 #    AuctionHouseBot.Buyer.ChanceMultiplier.QUALITY
@@ -3841,7 +3841,7 @@ AuctionHouseBot.Buyer.ChanceMultiplier.Yellow = 100
 #                    The smaller this value is, the more chances you give for an item to be bought by AHBot.
 #       Default:     20 (20min.)
 
-AuctionHouseBot.Buyer.Recheck.Interval = 20
+AuctionHouseBot.Buyer.Recheck.Interval = 1
 
 #
 ###################################################################################################
@@ -3940,7 +3940,7 @@ Eluna.ScriptPath = "lua_scripts"
 #                         Example:  536870912 (512 MB)
 #
 
-Appender.Console=1,3,0
+Appender.Console=1,3,0,13 11 9 14 3 1
 Appender.Server=2,2,0,Server.log,w
 Appender.GM=2,2,15,gm/gm_%s.log
 Appender.DBErrors=2,2,0,DBErrors.log
@@ -4160,7 +4160,7 @@ NpcBot.Enable = 1
 #        Default:     1
 #        Max:         39
 
-NpcBot.MaxBots = 1
+NpcBot.MaxBots = 19
 
 #
 #    NpcBot.MaxBotsPerClass
@@ -4177,7 +4177,7 @@ NpcBot.MaxBotsPerClass = 0
 #        Note2:       This parameter is set for each player at login.
 #        Default:     30
 
-NpcBot.BaseFollowDistance = 30
+NpcBot.BaseFollowDistance = 20
 
 #
 #    NpcBot.XpReduction
@@ -4204,7 +4204,7 @@ NpcBot.XpReduction = 0
 #                     64 - Cross
 #                     128 - Skull
 
-NpcBot.HealTargetIconsMask = 0
+NpcBot.HealTargetIconsMask = 1
 
 #
 #    NpcBot.TankTargetIconMask
@@ -4222,7 +4222,7 @@ NpcBot.HealTargetIconsMask = 0
 #                     64 - Cross
 #                     128 - Skull
 
-NpcBot.TankTargetIconMask = 0
+NpcBot.TankTargetIconMask = 4
 
 #
 #    NpcBot.DPSTargetIconMask
@@ -4242,7 +4242,7 @@ NpcBot.TankTargetIconMask = 0
 #                     64 - Cross
 #                     128 - Skull
 
-NpcBot.DPSTargetIconMask = 0
+NpcBot.DPSTargetIconMask = 64
 
 #
 #    NpcBot.Mult.Damage.Physical
@@ -4253,8 +4253,8 @@ NpcBot.DPSTargetIconMask = 0
 #        Minimum:     0.1
 #        Maximum:    10.0
 
-NpcBot.Mult.Damage.Physical = 1.0
-NpcBot.Mult.Damage.Spell    = 1.0
+NpcBot.Mult.Damage.Physical = 0.3
+NpcBot.Mult.Damage.Spell    = 0.3
 NpcBot.Mult.Healing         = 1.0
 
 #
@@ -4271,9 +4271,9 @@ NpcBot.Mult.Healing         = 1.0
 #                     1 - (NpcBot.Enable.DungeonFinder)
 
 NpcBot.Enable.Dungeon       = 1
-NpcBot.Enable.Raid          = 0
-NpcBot.Enable.BG            = 0
-NpcBot.Enable.Arena         = 0
+NpcBot.Enable.Raid          = 1
+NpcBot.Enable.BG            = 1
+NpcBot.Enable.Arena         = 1
 NpcBot.Enable.DungeonFinder = 1
 
 #
@@ -4292,7 +4292,7 @@ NpcBot.Limit.Raid    = 1
 #        Note:        This value is for level 80 characters, for lower levels cost is reduced.
 #        Default:     1000000 (100 gold)
 
-NpcBot.Cost = 1000000
+NpcBot.Cost = 0
 
 #
 #    NpcBot.UpdateDelay.Base
@@ -4381,12 +4381,12 @@ NpcBot.Gossip.ShowEquipmentListItems = 0
 #                     1 - (NpcBot.NewClasses.SpellBreaker.Enable)
 #                     1 - (NpcBot.NewClasses.DarkRanger.Enable)
 
-NpcBot.NewClasses.Blademaster.Enable       = 1
-NpcBot.NewClasses.ObsidianDestroyer.Enable = 1
-NpcBot.NewClasses.Archmage.Enable          = 1
-NpcBot.NewClasses.Dreadlord.Enable         = 1
-NpcBot.NewClasses.SpellBreaker.Enable      = 1
-NpcBot.NewClasses.DarkRanger.Enable        = 1
+NpcBot.NewClasses.Blademaster.Enable       = 0
+NpcBot.NewClasses.ObsidianDestroyer.Enable = 0
+NpcBot.NewClasses.Archmage.Enable          = 0
+NpcBot.NewClasses.Dreadlord.Enable         = 0
+NpcBot.NewClasses.SpellBreaker.Enable      = 0
+NpcBot.NewClasses.DarkRanger.Enable        = 0
 
 #
 #    NpcBot.Stats.Limits.Enable
