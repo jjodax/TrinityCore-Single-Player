@@ -61,6 +61,7 @@
 // 39
 // 40
 void AddLfgSoloScripts();
+void AddSC_skip_StarterArea();
 
 void AddCustomScripts()
 {
@@ -105,4 +106,5 @@ void AddCustomScripts()
     // 39
     // 40
 	AddLfgSoloScripts();
+	AddSC_skip_StarterArea();
 }
