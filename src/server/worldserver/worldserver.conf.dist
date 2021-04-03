@@ -37,6 +37,7 @@
 #    LOGGING SYSTEM SETTINGS
 #    PACKET SPOOF PROTECTION SETTINGS
 #    METRIC SETTINGS
+#    SOLO LFG
 #
 ###################################################################################################
 
@@ -4406,6 +4407,26 @@ NpcBot.InfoPacketsLimit = -1
 #                     604800 - (7 Days)
 
 NpcBot.OwnershipExpireTime = 0
+
+#
+###################################################################################################
+
+###################################################################################################
+# SOLO LFG
+#
+#    SoloLFG.Enable
+#        Description: Enable the module.
+#        Default:     1  - (Enabled)
+#                     0  - (Disabled)
+
+SoloLFG.Enable = 1
+
+#    SoloLFG.Announce
+#        Description: Announce the module.
+#        Default:     1  - (Enabled)
+#                     0  - (Disabled)
+
+SoloLFG.Announce = 1
 
 #
 ###################################################################################################
