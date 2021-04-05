@@ -94,7 +94,9 @@ class FreezeDetector
 
         static void Start(std::shared_ptr<FreezeDetector> const& freezeDetector)
         {
+#ifndef _DEBUG
             freezeDetector->_timer.expires_from_now(boost::posix_time::seconds(5));
+#endif
             freezeDetector->_timer.async_wait(std::bind(&FreezeDetector::Handler, std::weak_ptr<FreezeDetector>(freezeDetector), std::placeholders::_1));
         }
 

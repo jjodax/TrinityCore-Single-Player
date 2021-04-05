@@ -77,6 +77,8 @@ class BotMgr
         static float GetBotStatLimitParry();
         static float GetBotStatLimitBlock();
         static float GetBotStatLimitCrit();
+        static float GetBotReviveSettingHP();
+        static float GetBotReviveSettingMP();
 
         static void Initialize();
         static void ReloadConfig();

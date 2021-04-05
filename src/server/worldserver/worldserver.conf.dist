@@ -4436,6 +4436,15 @@ NpcBot.InfoPacketsLimit = -1
 NpcBot.OwnershipExpireTime = 0
 
 #
+#    NpcBot.ReviveSetting
+#        Description: Revive HP, MP Setting. (Percentage)
+#        Note:        
+#        Default:     25 (%)
+
+NpcBot.Revive.HP = 25
+NpcBot.Revive.MP = 25
+
+#
 ###################################################################################################
 
 ###################################################################################################

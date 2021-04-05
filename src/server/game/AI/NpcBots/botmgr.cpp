@@ -64,6 +64,8 @@ float _botStatLimits_crit;
 float _mult_dmg_physical;
 float _mult_dmg_spell;
 float _mult_healing;
+float _reviveSettingHP;
+float _reviveSettingMP;
 
 bool __firstload = true;
 
@@ -206,6 +208,12 @@ void BotMgr::LoadConfig(bool reload)
     _botStatLimits_parry    = sConfigMgr->GetFloatDefault("NpcBot.Stats.Limits.Parry", 95.0f);
     _botStatLimits_block    = sConfigMgr->GetFloatDefault("NpcBot.Stats.Limits.Block", 95.0f);
     _botStatLimits_crit     = sConfigMgr->GetFloatDefault("NpcBot.Stats.Limits.Crit", 95.0f);
+    _reviveSettingHP        = sConfigMgr->GetFloatDefault("NpcBot.Revive.HP", 25.0f);
+    if (_reviveSettingHP > 100.)
+        _reviveSettingHP = 100.;
+    _reviveSettingMP        = sConfigMgr->GetFloatDefault("NpcBot.Revive.MP", 25.0f);
+    if (_reviveSettingMP > 100.)
+        _reviveSettingMP = 100.;
 
     //limits
     _mult_dmg_physical      = std::max<float>(_mult_dmg_physical, 0.1f);
@@ -379,6 +387,15 @@ float BotMgr::GetBotStatLimitBlock()
 float BotMgr::GetBotStatLimitCrit()
 {
     return _botStatLimits_crit;
+}
+
+float BotMgr::GetBotReviveSettingHP()
+{
+    return _reviveSettingHP;
+}
+float BotMgr::GetBotReviveSettingMP()
+{
+    return _reviveSettingMP;
 }
 
 uint8 BotMgr::GetNpcBotXpReduction()
@@ -584,9 +601,9 @@ void BotMgr::_reviveBot(Creature* bot, WorldLocation* dest)
     //bot->GetBotAI()->Reset();
     bot->GetBotAI()->SetShouldUpdateStats();
 
-    bot->SetHealth(bot->GetMaxHealth() / 4); //25% of max health
+    bot->SetHealth(bot->GetMaxHealth() * (_reviveSettingHP / 100));
     if (bot->GetMaxPower(POWER_MANA) > 1)
-        bot->SetPower(POWER_MANA, bot->GetMaxPower(POWER_MANA) / 4); //25% of max mana
+        bot->SetPower(POWER_MANA, bot->GetMaxPower(POWER_MANA) * (_reviveSettingMP / 100));
 
     if (!bot->GetBotAI()->IAmFree() && !bot->GetBotAI()->HasBotCommandState(BOT_COMMAND_MASK_UNMOVING))
         bot->GetBotAI()->SetBotCommandState(BOT_COMMAND_FOLLOW, true);
