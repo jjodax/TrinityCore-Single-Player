@@ -2565,10 +2565,8 @@ void SpellMgr::LoadSpellInfoStore()
     UnloadSpellInfoStore();
     mSpellInfoMap.resize(sSpellStore.GetNumRows(), nullptr);
 
-    for (SpellEntry const* spellEntry : sSpellStore) {
-        SpellInfo* pInfo = new SpellInfo(spellEntry);
-        mSpellInfoMap[spellEntry->ID] = pInfo;
-    }
+    for (SpellEntry const* spellEntry : sSpellStore)
+        mSpellInfoMap[spellEntry->ID] = new SpellInfo(spellEntry);
 
     for (uint32 spellIndex = 0; spellIndex < GetSpellInfoStoreSize(); ++spellIndex)
     {

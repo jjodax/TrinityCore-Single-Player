@@ -814,12 +814,19 @@ struct GossipMenus
     ConditionContainer  Conditions;
 };
 
+struct SpellLocale
+{
+    uint8               Locale;
+    std::string         Name;
+};
+
 typedef std::multimap<uint32, GossipMenus> GossipMenusContainer;
 typedef std::pair<GossipMenusContainer::const_iterator, GossipMenusContainer::const_iterator> GossipMenusMapBounds;
 typedef std::pair<GossipMenusContainer::iterator, GossipMenusContainer::iterator> GossipMenusMapBoundsNonConst;
 typedef std::multimap<uint32, GossipMenuItems> GossipMenuItemsContainer;
 typedef std::pair<GossipMenuItemsContainer::const_iterator, GossipMenuItemsContainer::const_iterator> GossipMenuItemsMapBounds;
 typedef std::pair<GossipMenuItemsContainer::iterator, GossipMenuItemsContainer::iterator> GossipMenuItemsMapBoundsNonConst;
+typedef std::map<uint32, SpellLocale> SpellLocaleMap;
 
 struct QuestPOIBlobPoint
 {
@@ -1075,6 +1082,7 @@ class TC_GAME_API ObjectMgr
         }
 
         GossipText const* GetGossipText(uint32 Text_ID) const;
+        SpellLocale const* GetSpellLocale(uint32 SpellID) const;
         QuestGreeting const* GetQuestGreeting(ObjectGuid guid) const;
 
         WorldSafeLocsEntry const* GetDefaultGraveyard(uint32 team) const;
@@ -1249,6 +1257,7 @@ class TC_GAME_API ObjectMgr
 
         void LoadVendors();
         void LoadTrainers();
+        void LoadSpellLocale();
         void LoadCreatureDefaultTrainers();
 
         void InitializeQueriesData(QueryDataGroup mask);
@@ -1658,6 +1667,7 @@ class TC_GAME_API ObjectMgr
         SpellClickInfoContainer _spellClickInfoStore;
 
         SpellScriptsContainer _spellScriptsStore;
+        SpellLocaleMap _spellLocale;
 
         std::unordered_map<uint32, VehicleTemplate> _vehicleTemplateStore;
         VehicleAccessoryContainer _vehicleTemplateAccessoryStore;

@@ -3,6 +3,8 @@
 
 #include "CreatureAI.h"
 #include "botcommon.h"
+#include <atlconv.h>
+
 /*
 NpcBot System by Trickerer (onlysuffering@gmail.com)
 */
@@ -53,6 +55,7 @@ class bot_ai : public CreatureAI
         void ChooseVehicleForEncounter(Player const* owner, uint32 &creEntry, uint32 &vehEntry) const;
 
         static const std::string& LocalizedNpcText(Player const* forPlayer, uint32 textId);
+        const std::string& LocalizedSpellText(Player const* forPlayer, SpellInfo const* spellInfo);
 
         bool OnGossipHello(Player* player, uint32 option);
         bool OnGossipSelect(Player* player, Creature* creature, uint32 sender, uint32 action);
@@ -425,6 +428,8 @@ class bot_ai : public CreatureAI
         BotVehicleStrats curVehStrat;
         uint8 vehcomboPoints;
         bool shouldEnterVehicle;
+
+        std::string m_spellNameImpl;
 
     private:
         void FindMaster();

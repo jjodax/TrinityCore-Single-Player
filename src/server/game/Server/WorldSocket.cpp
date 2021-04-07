@@ -356,6 +356,15 @@ WorldSocket::ReadDataHandlerResult WorldSocket::ReadDataHandler()
             packetToQueue = new WorldPacket(std::move(packet), std::chrono::steady_clock::now());
             break;
 
+        case SMSG_GOSSIP_MESSAGE :
+            packetToQueue = new WorldPacket(std::move(packet));
+            packetToQueue;
+            {
+                int a = 0;
+                a;
+            }
+            break;
+
         default:
             packetToQueue = new WorldPacket(std::move(packet));
             break;

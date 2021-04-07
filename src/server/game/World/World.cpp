@@ -2026,6 +2026,9 @@ void World::SetInitialWorldSettings()
     TC_LOG_INFO("server.loading", "Loading Trainers...");       // must be after LoadCreatureTemplates
     sObjectMgr->LoadTrainers();
 
+    TC_LOG_INFO("server.loading", "Loading Spell Locale...");
+    sObjectMgr->LoadSpellLocale();
+
     TC_LOG_INFO("server.loading", "Loading Creature default trainers...");
     sObjectMgr->LoadCreatureDefaultTrainers();
 
@@ -2305,7 +2308,6 @@ void World::DetectDBCLang()
     }
 
     m_defaultDbcLocale = LocaleConstant(default_locale);
-
     TC_LOG_INFO("server.loading", "Using %s DBC Locale as default. All available DBC locales: %s", localeNames[m_defaultDbcLocale], availableLocalsStr.empty() ? "<none>" : availableLocalsStr.c_str());
 }
 

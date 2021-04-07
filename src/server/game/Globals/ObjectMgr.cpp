@@ -6179,6 +6179,15 @@ GossipText const* ObjectMgr::GetGossipText(uint32 Text_ID) const
     return nullptr;
 }
 
+SpellLocale const* ObjectMgr::GetSpellLocale(uint32 SpellID) const
+{
+    std::map<uint32, SpellLocale>::const_iterator it = _spellLocale.find(SpellID);
+    if (it != _spellLocale.end())
+        return &it->second;
+    return nullptr;
+}
+
+
 void ObjectMgr::LoadGossipText()
 {
     uint32 oldMSTime = getMSTime();
@@ -9232,6 +9241,30 @@ void ObjectMgr::LoadMailLevelRewards()
     while (result->NextRow());
 
     TC_LOG_INFO("server.loading", ">> Loaded %u level dependent mail rewards in %u ms", count, GetMSTimeDiffToNow(oldMSTime));
+}
+
+void ObjectMgr::LoadSpellLocale()
+{
+    uint32 oldMSTime = getMSTime();
+
+    _spellLocale.clear();
+
+    if (QueryResult result = WorldDatabase.Query("SELECT Spell_ID, Locale, Name FROM spell_locale"))
+    {
+        do
+        {
+            Field* fields = result->Fetch();
+            SpellLocale spell;
+            uint32 SpellID = fields[0].GetUInt32();
+            spell.Locale = fields[1].GetUInt8();
+            spell.Name = fields[2].GetString();
+
+            _spellLocale[SpellID] = spell;
+
+        } while (result->NextRow());
+    }
+
+    TC_LOG_INFO("server.loading", ">> Loaded " SZFMTD " spell locale %u ms", _spellLocale.size(), GetMSTimeDiffToNow(oldMSTime));
 }
 
 void ObjectMgr::LoadTrainers()

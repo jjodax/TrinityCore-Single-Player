@@ -35,6 +35,17 @@ Methods may have null arg1 (Unit*):
 DamageTaken(Unit*, ), JustDied(Unit*, ), OwnerAttackedBy(Unit*, ), HealReceived(Unit*, )
 Possibly others
 */
+#include <atlconv.h>
+
+std::wstring strconv(const std::string& _src) {
+    USES_CONVERSION;
+    return std::wstring(A2W(_src.c_str()));
+};
+
+std::string strconv(const std::wstring& _src) {
+    USES_CONVERSION;
+    return std::string(W2A(_src.c_str()));
+};
 #define MAX_AMMO_LEVEL 13
 uint8 const AmmoDPSForLevel[MAX_AMMO_LEVEL][2] =
 {
@@ -280,6 +291,25 @@ const std::string& bot_ai::LocalizedNpcText(Player const* forPlayer, uint32 text
     }
 
     return unk_botstrings[textId];
+}
+
+const std::string& bot_ai::LocalizedSpellText(Player const* forPlayer, SpellInfo const* spellInfo)
+{
+    LocaleConstant loc = forPlayer ? forPlayer->GetSession()->GetSessionDbLocaleIndex() : sWorld->GetDefaultDbcLocale();
+
+    if (SpellLocale const* nt = sObjectMgr->GetSpellLocale(spellInfo->Id)) {
+        std::wstring wnamepart;
+        if (loc != DEFAULT_LOCALE && nt && Utf8FitTo(nt->Name, wnamepart))
+            return nt->Name;
+    }
+    m_spellNameImpl = "";
+    std::ostringstream name;
+    _AddSpellLink(forPlayer, spellInfo, name);
+    m_spellNameImpl = name.str().c_str();
+#ifdef _DEBUG
+    TC_LOG_ERROR("sql.sql", "Not Exist spell name : %d, %s", spellInfo->Id, m_spellNameImpl);
+#endif
+    return m_spellNameImpl;
 }
 
 void bot_ai::BotSay(const std::string &text, Player const* target) const
@@ -7501,8 +7531,7 @@ bool bot_ai::OnGossipSelect(Player* player, Creature* creature/* == me*/, uint32
                 spellInfo = sSpellMgr->GetSpellInfo(basespell); //always valid
 
                 std::ostringstream name;
-                name << LocalizedNpcText(player, BOT_TEXT_USE_);
-                _AddSpellLink(player, spellInfo, name);
+                name << LocalizedSpellText(player, spellInfo);
                 AddGossipItemFor(player, GOSSIP_ICON_TRAINER, name.str().c_str(), GOSSIP_SENDER_ABILITIES_USE, GOSSIP_ACTION_INFO_DEF + basespell);
             }
 
@@ -7607,7 +7636,7 @@ bool bot_ai::OnGossipSelect(Player* player, Creature* creature/* == me*/, uint32
 
                 spellInfo = sSpellMgr->GetSpellInfo(*itr); //always valid
                 std::ostringstream name;
-                _AddSpellLink(player, spellInfo, name);
+                name << LocalizedSpellText(player, spellInfo);
 
                 uint8 icon = (GetSpell(*itr) != 0) ? BOT_ICON_ON : BOT_ICON_OFF;
                 AddGossipItemFor(player, icon, name.str().c_str(), toggleSender, GOSSIP_ACTION_INFO_DEF + *itr);
@@ -12158,10 +12187,8 @@ void bot_ai::_AddSpellLink(Player const* forPlayer, SpellInfo const* spellInfo, 
     uint32 loc = forPlayer->GetSession()->GetSessionDbcLocale();
     str << "|c";
 
-    if (color)
-    {
-        switch (GetFirstSchoolInMask(spellInfo->GetSchoolMask()))
-        {
+    if (color) {
+        switch (GetFirstSchoolInMask(spellInfo->GetSchoolMask())) {
             case SPELL_SCHOOL_NORMAL:       str << "ffffff00"; break; //YELLOW
             case SPELL_SCHOOL_HOLY:         str << "ffffe680"; break; //LIGHT YELLOW
             case SPELL_SCHOOL_FIRE:         str << "ffff8000"; break; //ORANGE
@@ -12174,7 +12201,6 @@ void bot_ai::_AddSpellLink(Player const* forPlayer, SpellInfo const* spellInfo, 
     }
     else
         str << "ffffffff"; //default white
-
     str << "|Hspell:" << spellInfo->Id << "|h[" << spellInfo->SpellName[loc] << "]|h|r";
 }
 //Unused
