@@ -209,19 +209,19 @@ void BotMgr::LoadConfig(bool reload)
     _botStatLimits_block    = sConfigMgr->GetFloatDefault("NpcBot.Stats.Limits.Block", 95.0f);
     _botStatLimits_crit     = sConfigMgr->GetFloatDefault("NpcBot.Stats.Limits.Crit", 95.0f);
     _reviveSettingHP        = sConfigMgr->GetFloatDefault("NpcBot.Revive.HP", 25.0f);
-    if (_reviveSettingHP > 100.)
-        _reviveSettingHP = 100.;
     _reviveSettingMP        = sConfigMgr->GetFloatDefault("NpcBot.Revive.MP", 25.0f);
-    if (_reviveSettingMP > 100.)
-        _reviveSettingMP = 100.;
 
     //limits
     _mult_dmg_physical      = std::max<float>(_mult_dmg_physical, 0.1f);
     _mult_dmg_spell         = std::max<float>(_mult_dmg_spell, 0.1f);
-    _mult_healing           = std::max<float>(_mult_healing,   0.1f);
+    _mult_healing           = std::max<float>(_mult_healing, 0.1f);
+    _reviveSettingHP        = std::max<float>(_reviveSettingHP, 100.f);
+    _reviveSettingMP        = std::max<float>(_reviveSettingMP, 100.f);
     _mult_dmg_physical      = std::min<float>(_mult_dmg_physical, 10.f);
     _mult_dmg_spell         = std::min<float>(_mult_dmg_spell, 10.f);
     _mult_healing           = std::min<float>(_mult_healing,   10.f);
+    _reviveSettingHP        = std::min<float>(_reviveSettingHP, 1.f);
+    _reviveSettingMP        = std::min<float>(_reviveSettingMP, 1.f);
 }
 
 uint8 BotMgr::GetNpcBotsCount() const
@@ -491,6 +491,23 @@ void BotMgr::Update(uint32 diff)
             (!bot->GetBotAI()->HasBotCommandState(BOT_COMMAND_STAY) && _owner->GetDistance(bot) > SIZE_OF_GRIDS)))
         {
             //_owner->m_Controlled.erase(bot);
+            if (_owner->GetMap() != bot->GetMap()) {
+                auto* pBot = bot->GetBotAI();
+                if (pBot->IsBotClassPriest()) {
+                    if (_owner->GetMap()->IsDungeon()) {
+                        if (!pBot->HasRole(BOT_ROLE_HEAL))
+                            pBot->ToggleRole(BOT_ROLE_HEAL, true);
+                        if (pBot->HasRole(BOT_ROLE_DPS))
+                            pBot->ToggleRole(BOT_ROLE_DPS, true);
+                    }
+                    else {
+                        if (pBot->HasRole(BOT_ROLE_HEAL))
+                            pBot->ToggleRole(BOT_ROLE_HEAL, true);
+                        if (!pBot->HasRole(BOT_ROLE_DPS))
+                            pBot->ToggleRole(BOT_ROLE_DPS, true);
+                    }
+                }
+            }
             TeleportBot(bot, _owner->GetMap(), _owner);
             continue;
         }

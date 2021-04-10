@@ -35,17 +35,6 @@ Methods may have null arg1 (Unit*):
 DamageTaken(Unit*, ), JustDied(Unit*, ), OwnerAttackedBy(Unit*, ), HealReceived(Unit*, )
 Possibly others
 */
-#include <atlconv.h>
-
-std::wstring strconv(const std::string& _src) {
-    USES_CONVERSION;
-    return std::wstring(A2W(_src.c_str()));
-};
-
-std::string strconv(const std::wstring& _src) {
-    USES_CONVERSION;
-    return std::string(W2A(_src.c_str()));
-};
 #define MAX_AMMO_LEVEL 13
 uint8 const AmmoDPSForLevel[MAX_AMMO_LEVEL][2] =
 {
@@ -306,9 +295,9 @@ const std::string& bot_ai::LocalizedSpellText(Player const* forPlayer, SpellInfo
     std::ostringstream name;
     _AddSpellLink(forPlayer, spellInfo, name);
     m_spellNameImpl = name.str().c_str();
-#ifdef _DEBUG
-    TC_LOG_ERROR("sql.sql", "Not Exist spell name : %d, %s", spellInfo->Id, m_spellNameImpl);
-#endif
+//#ifdef _DEBUG
+    TC_LOG_ERROR("sql.sql", "Not Exist spell name (locale) : %s", spellInfo->Id, m_spellNameImpl);
+//#endif
     return m_spellNameImpl;
 }
 
@@ -2237,8 +2226,24 @@ void bot_ai::SetStats(bool force)
         //Protector of the Pack part 2
         if (mylevel >= 45 && myclass == DRUID_BEAR_FORM && _spec == BOT_SPEC_DRUID_FERAL)
             ap_mod *= 1.06f;
+        //from stats mods
+        if (myclass == DRUID_BEAR_FORM || myclass == DRUID_CAT_FORM)
+        {
+            atpower += _getTotalBotStat(BOT_STAT_MOD_FERAL_ATTACK_POWER);
+            //Predatory Strikes
+            if (me->GetLevel() >= 25)
+            {
+                uint8 slot = BOT_SLOT_MAINHAND;
+                atpower += 1.5f * me->GetLevel();
+                atpower += 0.2f * (
+                    _getBotStat(slot, BOT_STAT_MOD_FERAL_ATTACK_POWER)
+                    + _getBotStat(slot, BOT_STAT_MOD_ATTACK_POWER)
+                    //+ _getBotStat(slot, BOT_STAT_MOD_RANGED_ATTACK_POWER)
+                    );
+            }
+        }
     }
-    if (_botclass == BOT_CLASS_ROGUE)
+    else if (_botclass == BOT_CLASS_ROGUE)
     {
         //Deadliness
         if (mylevel >= 35 && _spec == BOT_SPEC_ROGUE_SUBTLETY)
@@ -2247,23 +2252,7 @@ void bot_ai::SetStats(bool force)
         if (mylevel >= 50 && _spec == BOT_SPEC_ROGUE_COMBAT)
             ap_mod *= 1.04f;
     }
-    //from stats mods
-    if (myclass == DRUID_BEAR_FORM || myclass == DRUID_CAT_FORM)
-    {
-        atpower += _getTotalBotStat(BOT_STAT_MOD_FERAL_ATTACK_POWER);
-        //Predatory Strikes
-        if (me->GetLevel() >= 25)
-        {
-            uint8 slot = BOT_SLOT_MAINHAND;
-            atpower += 1.5f * me->GetLevel();
-            atpower += 0.2f * (
-                _getBotStat(slot, BOT_STAT_MOD_FERAL_ATTACK_POWER)
-                + _getBotStat(slot, BOT_STAT_MOD_ATTACK_POWER)
-                //+ _getBotStat(slot, BOT_STAT_MOD_RANGED_ATTACK_POWER)
-                );
-        }
-    }
-    if (_botclass == BOT_CLASS_HUNTER)
+    else if (_botclass == BOT_CLASS_HUNTER)
     {
         //Careful Aim
         if (me->GetLevel() >= 15)
@@ -2272,13 +2261,13 @@ void bot_ai::SetStats(bool force)
         if (me->GetLevel() >= 30 && _spec == BOT_SPEC_HUNTER_SURVIVAL)
             atpower += 0.3f * _getTotalBotStat(BOT_STAT_MOD_STAMINA);
     }
-    if (_botclass == BOT_CLASS_SHAMAN)
+    else if (_botclass == BOT_CLASS_SHAMAN)
     {
         //Mental Dexterity
         if (me->GetLevel() >= 30 && _spec == BOT_SPEC_SHAMAN_ENHANCEMENT)
             atpower += _getTotalBotStat(BOT_STAT_MOD_INTELLECT);
     }
-    if (_botclass == BOT_CLASS_DARK_RANGER)
+    else if (_botclass == BOT_CLASS_DARK_RANGER)
     {
         atpower += 2.f * _getTotalBotStat(BOT_STAT_MOD_INTELLECT);
         if (me->GetLevel() >= 60)
@@ -2329,32 +2318,32 @@ void bot_ai::SetStats(bool force)
             //else if (myclass == DRUID_TRAVEL_FORM || GetBotStance() == BOT_STANCE_NONE)
             //    armor_mod += 1.6f;
         }
-        if (_botclass == BOT_CLASS_HUNTER)
+        else if (_botclass == BOT_CLASS_HUNTER)
         {
             //Thick Hide
             if (mylevel >= 15)
                 armor_mod += 0.1f;
         }
-        if (_botclass == BOT_CLASS_MAGE)
+        else if (_botclass == BOT_CLASS_MAGE)
         {
             //Arcane Fortitude
             if (mylevel >= 15)
                 value += 1.5f * _getTotalBotStat(BOT_STAT_MOD_INTELLECT);
         }
-        if (_botclass == BOT_CLASS_SPHYNX)
+        else if (_botclass == BOT_CLASS_SPHYNX)
         {
             value += 5.f * _getTotalBotStat(BOT_STAT_MOD_INTELLECT);
             armor_mod += 0.5f;
         }
-        if (_botclass == BOT_CLASS_ARCHMAGE)
+        else if (_botclass == BOT_CLASS_ARCHMAGE)
         {
             value += 5.f * _getTotalBotStat(BOT_STAT_MOD_INTELLECT);
         }
-        if (_botclass == BOT_CLASS_DREADLORD)
+        else if (_botclass == BOT_CLASS_DREADLORD)
         {
             armor_mod += 0.5f;
         }
-        if (_botclass == BOT_CLASS_SPELLBREAKER)
+        else if (_botclass == BOT_CLASS_SPELLBREAKER)
         {
             armor_mod += -0.3f; // reduce armor so cannot really tank
         }
@@ -2374,9 +2363,9 @@ void bot_ai::SetStats(bool force)
         //res bonuses
         if (_botclass == BOT_CLASS_SPHYNX)
             value += mylevel * 5; //total 498 at 83
-        if (_botclass == BOT_CLASS_DREADLORD)
+        else if (_botclass == BOT_CLASS_DREADLORD)
             value += mylevel * 3; //total 332 at 83
-        if (_botclass == BOT_CLASS_DARK_RANGER)
+        else if (_botclass == BOT_CLASS_DARK_RANGER)
             value += mylevel * 2; //total 249 at 83
 
         resistbonus[i-1] = int32(value);

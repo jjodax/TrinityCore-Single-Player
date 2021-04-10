@@ -637,6 +637,38 @@ void WorldSession::LogoutPlayer(bool save)
         CharacterDatabasePreparedStatement* stmt = CharacterDatabase.GetPreparedStatement(CHAR_UPD_ACCOUNT_ONLINE);
         stmt->setUInt32(0, GetAccountId());
         CharacterDatabase.Execute(stmt);
+
+        {
+            QueryResult result = CharacterDatabase.Query("SELECT guid, leaderGuid FROM groups");
+            Field* field;
+            std::vector<uint32> groups;
+            if (result)
+            {
+                do
+                {
+                    field = result->Fetch();
+                    uint32 guid = field[0].GetUInt32();
+                    uint32 leader = field[1].GetUInt32();
+                    if (GetAccountId() == leader) {
+                        groups.push_back(guid);
+                    }
+                } while (result->NextRow());
+            }
+            for (size_t i0 = 0; i0 < groups.size(); i0++) {
+                {
+                    std::ostringstream str;
+                    str << "DELETE FROM group_instance WHERE guid = " << groups[i0];
+                    CharacterDatabase.Execute(str.str().c_str());
+                    TC_LOG_INFO("sql.sql", "SQL : %s", str.str());
+                }
+                {
+                    std::ostringstream str;
+                    str << "DELETE FROM group_member WHERE guid = " << groups[i0];
+                    CharacterDatabase.Execute(str.str().c_str());
+                    TC_LOG_INFO("sql.sql", "SQL : %s", str.str());
+                }
+            }
+        }
     }
 
     m_playerLogout = false;

@@ -217,6 +217,17 @@ class bot_ai : public CreatureAI
         static bool IsHumanoidClass(uint8 m_class);
         static bool IsHeroExClass(uint8 m_class);
 
+        bool IsBotClassWarrior() { return _botclass == CLASS_WARRIOR; }
+        bool IsBotClassPaladin() { return _botclass == CLASS_PALADIN; }
+        bool IsBotClassHunter() { return _botclass == CLASS_HUNTER; }
+        bool IsBotClassRogue() { return _botclass == CLASS_ROGUE; }
+        bool IsBotClassPriest() { return _botclass == CLASS_PRIEST; }
+        bool IsBotClassDeathKnight() { return _botclass == CLASS_DEATH_KNIGHT; }
+        bool IsBotClassShaman() { return _botclass == CLASS_SHAMAN; }
+        bool IsBotClassMage() { return _botclass == CLASS_MAGE; }
+        bool IsBotClassWarlock() { return _botclass == CLASS_WARLOCK; }
+        bool IsBotClassDruid() { return _botclass == CLASS_DRUID; }
+
         AoeSpotsVec const& GetAoeSpots() const;
         static void CalculateAoeSpots(Unit const* unit, AoeSpotsVec& spots);
         void CalculateAoeSafeSpots(Unit* target, float maxdist, AoeSafeSpotsVec& safespots) const;
